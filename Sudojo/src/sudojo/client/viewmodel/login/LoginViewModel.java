@@ -3,6 +3,7 @@ package sudojo.client.viewmodel.login;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import sudojo.client.model.login.StatoLogin;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;

@@ -3,6 +3,7 @@ package sudojo.client.viewmodel.creaDocumento;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import sudojo.client.model.documento.Documento;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;

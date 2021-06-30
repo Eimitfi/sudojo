@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import sudojo.client.model.log.Log;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;
@@ -33,7 +34,7 @@ public class GetLogViewModel extends AbstractViewModel implements GetLogViewMode
 	}
 	
 	@Override
-	public List<Log> getLog() {
+	public Log getLog() {
 		// TODO Auto-generated method stub
 		return null;
 	}

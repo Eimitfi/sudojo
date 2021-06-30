@@ -3,6 +3,7 @@ package sudojo.client.viewmodel.calendario;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import sudojo.client.model.gestioneCalendario.Evento;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;

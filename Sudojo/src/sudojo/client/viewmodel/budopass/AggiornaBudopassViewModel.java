@@ -3,6 +3,10 @@ package sudojo.client.viewmodel.budopass;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import sudojo.client.model.budopass.Competizione;
+import sudojo.client.model.budopass.Grado;
+import sudojo.client.model.budopass.Posizione;
+import sudojo.client.model.budopass.Seminario;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;

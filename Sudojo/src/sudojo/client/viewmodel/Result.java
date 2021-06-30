@@ -15,6 +15,10 @@ public class Result <T> implements Subject{
 		
 	}
 	
+	public T getValue() {
+		return this.value;
+	}
+	
 	@Override
 	public boolean detach(Observer<Subject> obj) {
 		// TODO Auto-generated method stub
