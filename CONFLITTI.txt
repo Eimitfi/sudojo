@@ -1,5 +1,4 @@
 LEGENDA: - -> non approvato (just a dubbio); + -> approvato da tutti quindi se ne deve parlare a Patella
 - La classe Log non ha metodi nel progetto, dovremmo aggiungerne in base all'uso che se ne fa nei livelli superiori
 
-- nel progetto il viewmodel chiede una lista di log al livello sottostante, ci√≤ sembra inutile visto che un singolo log √® gi√† una lista di entries; fix: il viewmodel vuole un solo log, non una lista
-
+- nel progetto il viewmodel chiede una lista di log al livello sottostante, ciÚ sembra inutile visto che un singolo log Ë gi‡† una lista di entries; fix: il viewmodel vuole un solo log, non una lista
