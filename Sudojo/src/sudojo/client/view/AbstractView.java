@@ -11,5 +11,6 @@ public abstract class AbstractView implements Observer{
 		
 	}
 	
-	public abstract void onChange(T obj);
+	//public abstract void onChange(T obj);
+	//c'è già questo metodo ereditato da Observer
 }
