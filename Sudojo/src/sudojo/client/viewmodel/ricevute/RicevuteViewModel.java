@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 
 import sudojo.client.model.net.Argomento;
 import sudojo.client.model.net.Comando;
+import sudojo.client.model.net.Request;
 import sudojo.client.model.pagamento.Pagamento;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
