@@ -8,6 +8,9 @@ public class Avviso {
 	private List<byte[]> allegato;
 	
 	
+	//btw sono le 17.27 di gioved� 1, io x oggi stacco
+	//non dovrebbe mancare molto: le view e i mock nel broker1 e poi � finito
+	//ma patella quando ci dice la data dell'orale?
 	
 	public Avviso(String oggetto, String descrizione, List<byte[]> allegato) {
 		super();
