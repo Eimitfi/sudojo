@@ -3,6 +3,7 @@ package sudojo.client.viewmodel.schedaValutazione;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import sudojo.client.model.budopass.SchedaValutazione;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;
@@ -26,7 +27,7 @@ public class CreaSchedaValutazioneViewModel extends AbstractViewModel implements
 
 	@Override
 	public void notifyObserver() {
-		for(Observer o : this.observers)
+		for(Observer<Subject> o : this.observers)
 			o.onChange(this);
 		
 	}

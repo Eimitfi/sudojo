@@ -28,7 +28,7 @@ public class GetAvvisoViewModel extends AbstractViewModel implements GetAvvisoVi
 
 	@Override
 	public void notifyObserver() {
-		for(Observer o : this.observers)
+		for(Observer<Subject> o : this.observers)
 			o.onChange(this);
 		
 	}

@@ -31,7 +31,7 @@ public class AggiornaBudopassViewModel extends AbstractViewModel implements Aggi
 
 	@Override
 	public void notifyObserver() {
-		for(Observer o : this.observers)
+		for(Observer<Subject> o : this.observers)
 			o.onChange(this);
 		
 	}
