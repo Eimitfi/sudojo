@@ -1,8 +1,12 @@
 package sudojo.client.viewmodel.affiliato;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import sudojo.client.model.net.Argomento;
+import sudojo.client.model.net.Comando;
+import sudojo.client.model.net.Request;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;
@@ -31,9 +35,11 @@ public class RigeneraPasswordViewModel extends AbstractViewModel implements Rige
 		
 	}
 	@Override
-	public String rigeneraPassword(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public void rigeneraPassword(String username) throws IOException {
+		Argomento argomento = new Argomento("username", username);
+		ArrayList<Argomento> args = new ArrayList<Argomento>();
+		args.add(argomento);
+		this.request(new Request(Comando.RIGENERA_PSWD, args));
 	}
 	
 
