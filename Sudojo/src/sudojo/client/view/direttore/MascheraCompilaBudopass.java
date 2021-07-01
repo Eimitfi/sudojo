@@ -5,7 +5,7 @@ import sudojo.client.viewmodel.Subject;
 import sudojo.client.viewmodel.budopass.AggiornaBudopassViewModelInterface;
 
 public class MascheraCompilaBudopass extends AbstractView{
-	private AggiornaBudopassViewModelInterface viewmodel;
+	//private AggiornaBudopassViewModelInterface viewmodel;
 	
 	@Override
 	public void onChange(Subject obj) {
