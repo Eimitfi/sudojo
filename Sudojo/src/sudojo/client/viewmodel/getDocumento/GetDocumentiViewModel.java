@@ -1,6 +1,6 @@
 package sudojo.client.viewmodel.getDocumento;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.Collection;
 import java.util.List;
 
