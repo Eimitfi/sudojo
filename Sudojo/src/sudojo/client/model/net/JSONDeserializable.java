@@ -1,5 +1,5 @@
 package sudojo.client.model.net;
 
 public interface JSONDeserializable {
-	public Response jsonDeserialize(String json);
+	public ResponseInterface jsonDeserialize(String json);
 }

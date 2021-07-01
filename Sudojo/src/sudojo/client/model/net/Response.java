@@ -1,6 +1,6 @@
 package sudojo.client.model.net;
 
-public class Response {
+public class Response implements ResponseInterface{
 	private Comando comando;
 	private String risultato;
 	private String exception;

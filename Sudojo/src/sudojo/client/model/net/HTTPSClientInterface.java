@@ -1,5 +1,7 @@
 package sudojo.client.model.net;
 
+import java.io.IOException;
+
 public interface HTTPSClientInterface {
-	public Response richiedi(Request richiesta);
+	public ResponseInterface richiedi(RequestInterface richiesta) throws IOException;
 }

@@ -30,7 +30,7 @@ public class HTTPSClient implements HTTPSClientInterface {
 
 
 	@Override
-	public Response richiedi(Request richiesta) throws IOException {
+	public ResponseInterface richiedi(RequestInterface richiesta) throws IOException {
 		JSONUtil util = new JSONUtil();
 		String req = util.jsonSerialize(richiesta);
 		

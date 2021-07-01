@@ -2,7 +2,7 @@ package sudojo.client.model.net;
 
 import java.util.List;
 
-public class Request {
+public class Request implements RequestInterface{
 	private Comando comando;
 	private List<Argomento> argomenti;
 	public Comando getComando() {

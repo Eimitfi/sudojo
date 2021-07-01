@@ -1,5 +1,5 @@
 package sudojo.client.model.net;
 
 public interface JSONSerializable {
-	public String jsonSerialize(Request richiesta);
+	public String jsonSerialize(RequestInterface richiesta);
 }

@@ -12,12 +12,12 @@ public class JSONUtil implements JSONDeserializable, JSONSerializable{
 	}
 
 	@Override
-	public String jsonSerialize(Request richiesta) {
+	public String jsonSerialize(RequestInterface richiesta) {
 		return g.toJson(richiesta);
 	}
 
 	@Override
-	public Response jsonDeserialize(String json) {
+	public ResponseInterface jsonDeserialize(String json) {
 		return g.fromJson(json, Response.class);
 	}
 
