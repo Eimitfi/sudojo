@@ -1,10 +1,13 @@
 package sudojo.client.viewmodel.getDocumento;
 
+import java.io.IOException;
 import java.util.ArrayList; 
 import java.util.Collection;
 import java.util.List;
 
 import sudojo.client.model.documento.Documento;
+import sudojo.client.model.net.Comando;
+import sudojo.client.model.net.Request;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;
@@ -32,12 +35,16 @@ public class GetDocumentiViewModel extends AbstractViewModel implements GetDocum
 			o.onChange(this);
 		
 	}
-	
+
 	@Override
-	public List<Documento> getDocumenti() {
+	public void getDocumenti() throws IOException {
 		// TODO Auto-generated method stub
-		return null;
+		this.request(new Request(Comando.GET_DOC, null));
+		
 	}
+	
+
+
 	
 
 }
