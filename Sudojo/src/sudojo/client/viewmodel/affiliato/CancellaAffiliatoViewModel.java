@@ -1,8 +1,14 @@
 package sudojo.client.viewmodel.affiliato;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import sudojo.client.model.gestioneAffiliato.Affiliato;
+import sudojo.client.model.net.Argomento;
+import sudojo.client.model.net.Comando;
+import sudojo.client.model.net.Request;
+import sudojo.client.model.net.RequestInterface;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;
@@ -33,9 +39,12 @@ public class CancellaAffiliatoViewModel extends AbstractViewModel implements Can
 	}
 	
 	@Override
-	public boolean cancellaAffiliato(Affiliato affiliato) {
-		// TODO Auto-generated method stub
-		return false;
+	public void cancellaAffiliato(Affiliato affiliato) throws IOException {
+		Argomento argomento = new Argomento("affiliato", affiliato.getCF());
+		ArrayList<Argomento> args = new ArrayList<Argomento>();
+		RequestInterface richiesta = new Request(Comando.CANCELLA_AFFILIATO, args);
+		this.request(richiesta);
+	 
 	}
 	
 	
