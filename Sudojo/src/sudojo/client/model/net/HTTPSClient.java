@@ -31,6 +31,7 @@ public class HTTPSClient implements HTTPSClientInterface {
 
 	@Override
 	public ResponseInterface richiedi(RequestInterface richiesta) throws IOException {
+		//[DAN]: aggiunto ResponseInterface e RequestInterface
 		JSONUtil util = new JSONUtil();
 		String req = util.jsonSerialize(richiesta);
 		
