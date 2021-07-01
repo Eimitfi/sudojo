@@ -1,9 +1,15 @@
 package sudojo.client.viewmodel.creaDocumento;
 
+import java.io.IOException;
 import java.util.ArrayList; 
 import java.util.Collection;
 
+import com.google.gson.Gson;
+
 import sudojo.client.model.documento.Documento;
+import sudojo.client.model.net.Argomento;
+import sudojo.client.model.net.Comando;
+import sudojo.client.model.net.Request;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;
@@ -32,11 +38,18 @@ public class CreaDocumentoViewModel extends AbstractViewModel implements CreaDoc
 			o.onChange(this);
 		
 	}
-	
+
 	@Override
-	public boolean creaDocumento(Documento doc) {
+	public void creaDocumento(Documento doc) throws IOException {
 		// TODO Auto-generated method stub
-		return false;
+		Gson g = new Gson();
+		Argomento argomento = new Argomento("documento", g.toJson(doc));
+		ArrayList<Argomento> args = new ArrayList<Argomento>();
+		args.add(argomento);
+		this.request(new Request(Comando.CREA_DOC, args));
+		
 	}
+	
+
 
 }
