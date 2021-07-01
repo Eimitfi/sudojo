@@ -8,7 +8,7 @@ public class AggiuntaGenitori extends AbstractView{
 	//ModificaAffiliatoViewModelInterface, quindi non so se bisognerebbe agganciarla al viewmodel oppure no. Nel caso non saprei
 	//nemmeno come farlo in grafica perche appunto dovrebbe già essere parte di aggiunta/modifica affiliato ed essendo una classe
 	//della view non dovrei implementare logica, a regola. Ditemi voi
-	
+	//[daniel]: secondo me su entrambe
 	@Override
 	public void onChange(Subject obj) {
 		// TODO Auto-generated method stub	
