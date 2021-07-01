@@ -7,9 +7,11 @@ public class Avviso {
 	private String descrizione;
 	private List<byte[]> allegato;
 	
-	
-	//btw sono le 17.27 di giovedï¿½ 1, io x oggi stacco
-	//non dovrebbe mancare molto: le view e i mock nel broker1 e poi ï¿½ finito
+	//ma a che serve sta roba in broker2?
+	//ma non mockiamo tutto dal broker1 in giù? tipo che il broker1
+	//ha tutti i dati mock hard-coded e ciao
+	//btw sono le 17.27 di giovedì 1, io x oggi stacco
+	//non dovrebbe mancare molto: le view e i mock nel broker1 e poi è finito
 	//ma patella quando ci dice la data dell'orale?
 	
 	public Avviso(String oggetto, String descrizione, List<byte[]> allegato) {
