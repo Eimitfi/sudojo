@@ -9,8 +9,6 @@ public class ViewLogin extends AbstractView{
 	
 	@Override
 	public void onChange(Subject obj) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
-
 }
