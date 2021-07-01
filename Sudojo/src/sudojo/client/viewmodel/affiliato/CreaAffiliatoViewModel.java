@@ -41,53 +41,15 @@ public class CreaAffiliatoViewModel extends AbstractViewModel implements CreaAff
 
 	}
 
-	private List<Argomento> makeArgsFromPersona(Persona a, String str) {
-		ArrayList<Argomento> result = new ArrayList<Argomento>();
+	
 
-		Argomento residenza = new Argomento("residenza" + str, a.getResidenza());
-		result.add(residenza);
-		Argomento cf = new Argomento("cf" + str, a.getCF());
-		result.add(cf);
-		Argomento cognome = new Argomento("cognome" + str, a.getCognome());
-		result.add(cognome);
-		Argomento email = new Argomento("email" + str, a.getEmail());
-		result.add(email);
-		Argomento luogoNascita = new Argomento("luogoNascita" + str, a.getLuogoNascita());
-		result.add(luogoNascita);
-		Argomento nome = new Argomento("nome" + str, a.getNome());
-		result.add(nome);
-		Argomento tel = new Argomento("telefono" + str, a.getNumTelefono());
-		result.add(tel);
-
-		Argomento dataNascita = new Argomento("dataNascita" + str, a.getDataNascita().toString());
-		result.add(dataNascita);
-
-		return result;
-
-	}
-
-	private List<Argomento> makeArgsFromAff(Affiliato a){
-		ArrayList<Argomento> result = new ArrayList<Argomento>();
-		if(a.getGenitore1() != null) {
-			
-		result.addAll(this.makeArgsFromPersona(a.getGenitore1(), "Genitore1"));
-		if(a.getGenitore2() != null)result.addAll(this.makeArgsFromPersona(a.getGenitore2(), "Genitore2"));
-		}
-		result.addAll(this.makeArgsFromPersona(a, "Affiliato"));
-		
-		Argomento carica = new Argomento("carica", a.getCarica().toString());
-		result.add(carica);
-		Argomento pswd = new Argomento("pswd", a.getCredenziali().getPassword());
-		result.add(pswd);
-		Argomento usern = new Argomento("username", a.getCredenziali().getUsername());
-		result.add(usern);
-		
-		
-		return result;
-	}
+	
 	
 	private void crea(Affiliato affiliato) throws IOException {
-		List<Argomento> args = this.makeArgsFromAff(affiliato);
+		Util util = new Util();
+		List<Argomento> args = util.makeArgsFromAff(affiliato);
+		
+		//List<Argomento> args = this.makeArgsFromAff(affiliato);
 		this.request(new Request(Comando.CREA_AFFILIATO, args));
 		
 	}
