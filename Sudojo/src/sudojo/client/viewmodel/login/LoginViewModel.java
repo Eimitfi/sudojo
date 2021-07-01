@@ -1,9 +1,13 @@
 package sudojo.client.viewmodel.login;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import sudojo.client.model.login.StatoLogin;
+import sudojo.client.model.net.Argomento;
+import sudojo.client.model.net.Comando;
+import sudojo.client.model.net.Request;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;
@@ -31,17 +35,30 @@ public class LoginViewModel extends AbstractViewModel implements LoginViewModelI
 			o.onChange(this);
 		
 	}
-	
+
 	@Override
-	public StatoLogin login(String user, String pswd) {
+	public void login(String user, String pswd) throws IOException {
 		// TODO Auto-generated method stub
-		return null;
+		Argomento username = new Argomento("username", user);
+		Argomento password = new Argomento("password", pswd);
+		ArrayList<Argomento> args = new ArrayList<Argomento>();
+		args.add(username);
+		args.add(password);
+		this.request(new Request(Comando.LOGIN, args));
+		
 	}
 
 	@Override
-	public boolean cambiaPassword(String user, String pswd) {
+	public void cambiaPassword(String user, String pswd) throws IOException {
 		// TODO Auto-generated method stub
-		return false;
+		Argomento username = new Argomento("username", user);
+		Argomento password = new Argomento("password", pswd);
+		ArrayList<Argomento> args = new ArrayList<Argomento>();
+		args.add(username);
+		args.add(password);
+		this.request(new Request(Comando.CAMBIA_PSWD, args));
 	}
+	
+
 
 }
