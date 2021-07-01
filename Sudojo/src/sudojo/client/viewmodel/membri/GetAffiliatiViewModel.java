@@ -1,9 +1,12 @@
 package sudojo.client.viewmodel.membri;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import sudojo.client.model.elenchi.ElencoAffiliati;
+import sudojo.client.model.net.Comando;
+import sudojo.client.model.net.Request;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;
@@ -31,11 +34,14 @@ public class GetAffiliatiViewModel extends AbstractViewModel implements GetAffil
 			o.onChange(this);
 		
 	}
-	
+
 	@Override
-	public ElencoAffiliati getAffiliati() {
+	public void getAffiliati() throws IOException {
 		// TODO Auto-generated method stub
-		return null;
+		this.request(new Request(Comando.GET_AFFILIATI, null));
+		
 	}
+	
+
 
 }

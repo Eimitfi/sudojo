@@ -1,6 +1,8 @@
 package sudojo.client.viewmodel.membri;
 
+import java.io.IOException;
+
 public interface GetAllieviViewModelInterface {
-	public ElencoAllievi getAllievi();
+	public void getAllievi() throws IOException;
 	
 }

@@ -1,8 +1,11 @@
 package sudojo.client.viewmodel.membri;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import sudojo.client.model.net.Comando;
+import sudojo.client.model.net.Request;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;
@@ -30,12 +33,14 @@ public class GetAllieviViewModel extends AbstractViewModel implements GetAllievi
 			o.onChange(this);
 		
 	}
-	
+
 	@Override
-	public ElencoAllievi getAllievi() {
+	public void getAllievi() throws IOException {
 		// TODO Auto-generated method stub
-		return null;
+		this.request(new Request(Comando.GET_ALLIEVI, null));
+		
 	}
 	
+
 
 }

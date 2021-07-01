@@ -1,5 +1,7 @@
 package sudojo.client.viewmodel.membri;
 
+import java.io.IOException;
+
 public interface GetIscrittiViewModelInterface {
-	public ElencoIscritti getIscritti();
+	public void getIscritti() throws IOException;
 }

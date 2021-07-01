@@ -1,8 +1,11 @@
 package sudojo.client.viewmodel.membri;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import sudojo.client.model.net.Comando;
+import sudojo.client.model.net.Request;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;
@@ -30,12 +33,13 @@ public class GetIscrittiViewModel extends AbstractViewModel implements GetIscrit
 			o.onChange(this);
 		
 	}
-	
+
 	@Override
-	public ElencoIscritti getIscritti() {
+	public void getIscritti() throws IOException {
 		// TODO Auto-generated method stub
-		return null;
+		this.request(new Request(Comando.GET_ISCRITTI, null));
 	}
-	
+
+
 
 }
