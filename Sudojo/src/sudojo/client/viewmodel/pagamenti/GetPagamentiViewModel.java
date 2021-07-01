@@ -27,7 +27,7 @@ public class GetPagamentiViewModel extends AbstractViewModel implements GetPagam
 
 	@Override
 	public void notifyObserver() {
-		for(Observer o : this.observers)
+		for(Observer<Subject> o : this.observers)
 			o.onChange(this);
 		
 	}

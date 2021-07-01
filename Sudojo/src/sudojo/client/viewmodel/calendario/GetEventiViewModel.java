@@ -28,7 +28,7 @@ public class GetEventiViewModel extends AbstractViewModel implements GetEventiVi
 
 	@Override
 	public void notifyObserver() {
-		for(Observer o : this.observers)
+		for(Observer<Subject> o : this.observers)
 			o.onChange(this);
 		
 	}

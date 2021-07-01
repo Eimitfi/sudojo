@@ -1,6 +1,6 @@
 package sudojo.client.viewmodel.getDocumento;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.Collection;
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class GetDocumentiViewModel extends AbstractViewModel implements GetDocum
 
 	@Override
 	public void notifyObserver() {
-		for(Observer o : this.observers)
+		for(Observer<Subject> o : this.observers)
 			o.onChange(this);
 		
 	}
