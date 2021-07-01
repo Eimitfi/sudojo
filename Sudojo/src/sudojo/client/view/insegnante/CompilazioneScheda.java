@@ -11,7 +11,7 @@ public class CompilazioneScheda extends AbstractView{
 	@Override
 	public void onChange(Subject obj) {
 		// TODO Auto-generated method stub
-		
+				
 	}
 
 }

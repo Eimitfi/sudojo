@@ -1,9 +1,12 @@
 package sudojo.client.viewmodel.budopass;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import sudojo.client.model.budopass.Budopass;
+import sudojo.client.model.net.Comando;
+import sudojo.client.model.net.Request;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;
@@ -32,11 +35,15 @@ public class GetBudopassViewModel extends AbstractViewModel implements GetBudopa
 			o.onChange(this);
 		
 	}
-	
+
 	@Override
-	public Budopass getBudopass(String user) {
+	public void getBudopass(String user) throws IOException {
 		// TODO Auto-generated method stub
-		return null;
+		this.request(new Request(Comando.GET_BUDO, null));
+		
 	}
+	
+
+
 
 }

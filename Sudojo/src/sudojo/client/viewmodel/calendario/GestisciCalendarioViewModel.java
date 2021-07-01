@@ -1,9 +1,13 @@
 package sudojo.client.viewmodel.calendario;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import sudojo.client.model.gestioneCalendario.Evento;
+import sudojo.client.model.net.Argomento;
+import sudojo.client.model.net.Comando;
+import sudojo.client.model.net.Request;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;
@@ -32,22 +36,52 @@ public class GestisciCalendarioViewModel extends AbstractViewModel implements Ge
 		
 	}
 	
-	@Override
-	public boolean cancellaEvento(Evento evento) {
-		// TODO Auto-generated method stub
-		return false;
+	private ArrayList<Argomento> getArgsFromEvent(Evento e){
+		ArrayList<Argomento> args = new ArrayList<Argomento>();
+		Argomento data = new Argomento("data", e.getData().toString());
+		args.add(data);
+		Argomento descrizione = new Argomento("descrizione", e.getDescrizione());
+		args.add(descrizione);
+		Argomento luogo = new Argomento("luogo", e.getLuogo());
+		args.add(luogo);
+		Argomento titolo = new Argomento("data", e.getTitolo());
+		args.add(titolo);
+		Argomento ora = new Argomento("ora", e.getOra().toString());
+		args.add(ora);
+		
+		return args;
+	}
+	
+	private void esegui(Evento evento, Comando c) throws IOException {
+		ArrayList<Argomento> args = this.getArgsFromEvent(evento);
+		this.request(new Request(c, args));
+		
 	}
 
 	@Override
-	public boolean modificaEvento(Evento evento) {
+	public void cancellaEvento(Evento evento) throws IOException {
 		// TODO Auto-generated method stub
-		return false;
+		this.esegui(evento, Comando.CANCELLA_EVENTO);
+		
+		
+		
 	}
 
 	@Override
-	public boolean creaEvento(Evento evento) {
+	public void modificaEvento(Evento evento) throws IOException {
 		// TODO Auto-generated method stub
-		return false;
+		this.esegui(evento, Comando.MODIFICA_EVENTO);
+		
 	}
+
+	@Override
+	public void creaEvento(Evento evento) throws IOException {
+		// TODO Auto-generated method stub
+		this.esegui(evento, Comando.CREA_EVENTO);
+		
+	}
+	
+
+
 
 }
