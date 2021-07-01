@@ -1,8 +1,9 @@
 package sudojo.client.viewmodel.presenza;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface GetPresenzeViewModelInterface {
-	public List<Presenza> getPresenze();
+	public void getPresenze() throws IOException;
 
 }

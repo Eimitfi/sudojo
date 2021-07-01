@@ -1,9 +1,15 @@
 package sudojo.client.viewmodel.ricevute;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.google.gson.Gson;
+
+import sudojo.client.model.net.Argomento;
+import sudojo.client.model.net.Comando;
+import sudojo.client.model.pagamento.Pagamento;
 import sudojo.client.viewmodel.AbstractViewModel;
 import sudojo.client.viewmodel.Observer;
 import sudojo.client.viewmodel.Subject;
@@ -31,11 +37,19 @@ public class RicevuteViewModel extends AbstractViewModel implements RicevuteView
 			o.onChange(this);
 		
 	}
-	
+
 	@Override
-	public List<Ricevuta> generaRicevute(List<Pagamento> pagamenti) {
+	public void generaRicevute(List<Pagamento> pagamenti) throws IOException {
 		// TODO Auto-generated method stub
-		return null;
+		Gson g = new Gson();
+		Argomento argomento = new Argomento("pagamenti", g.toJson(pagamenti));
+		ArrayList<Argomento> args = new ArrayList<Argomento>();
+		args.add(argomento);
+		this.request(new Request(Comando.CREA_RICEVUTE, args));
+		
 	}
+	
+
+
 
 }
