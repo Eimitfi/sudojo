@@ -4,7 +4,7 @@ import sudojo.client.view.AbstractView;
 import sudojo.client.viewmodel.Subject;
 
 public class HomeMaestro extends AbstractView{
-	//Questa è solo una maschera che porta alle altre maschere con le varie operazioni eseguibili da un maestro, pertanto non c'è
+	//Questa e solo una maschera che porta alle altre maschere con le varie operazioni eseguibili da un maestro, pertanto non c'e
 	//bisogno di collegarla al viewmodel
 	
 	@Override
