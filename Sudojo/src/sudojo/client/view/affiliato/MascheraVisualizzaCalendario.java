@@ -12,4 +12,16 @@ public class MascheraVisualizzaCalendario extends AbstractView{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void draw() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void bind() {
+		// TODO Auto-generated method stub
+		
+	}
 }
