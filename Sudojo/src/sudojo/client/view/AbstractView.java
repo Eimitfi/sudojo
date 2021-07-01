@@ -11,8 +11,4 @@ public abstract class AbstractView implements Observer<Subject>{
 	public void bind() {
 		
 	}
-	
-	//public abstract void onChange(T obj);
-	//c'è già questo metodo ereditato da Observer
-	//saranno le classi figlie a sovrascriverlo
 }
