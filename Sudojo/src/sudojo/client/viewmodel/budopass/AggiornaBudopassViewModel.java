@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.google.gson.Gson;
+
 import sudojo.client.model.budopass.Competizione;
 import sudojo.client.model.budopass.Grado;
 import sudojo.client.model.budopass.Posizione;
@@ -46,12 +48,14 @@ public class AggiornaBudopassViewModel extends AbstractViewModel implements Aggi
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
 		Argomento username = new Argomento("user", user);
 		args.add(username);
-		Argomento luogo = new Argomento("luogo", s.getLuogo());
-		args.add(luogo);
-		Argomento tenutario = new Argomento("tenutario", s.getTenutario());
-		args.add(tenutario);
-		Argomento data = new Argomento("data", s.getData().toString());
-		args.add(data);
+//		Argomento luogo = new Argomento("luogo", s.getLuogo());
+//		args.add(luogo);
+//		Argomento tenutario = new Argomento("tenutario", s.getTenutario());
+//		args.add(tenutario);
+//		Argomento data = new Argomento("data", s.getData().toString());
+//		args.add(data);
+		Gson g = new Gson();
+		Argomento seminario = new Argomento("seminario", g.toJson(s));
 		this.request(new Request(Comando.AGGIORNA_BUDOPASS_SEMINARIO, args));
 	}
 
@@ -61,7 +65,8 @@ public class AggiornaBudopassViewModel extends AbstractViewModel implements Aggi
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
 		Argomento username = new Argomento("user", user);
 		args.add(username);
-		Argomento grado = new Argomento("grado", g.toString());
+		Gson gson = new Gson();
+		Argomento grado = new Argomento("grado", gson.toJson(g));
 		args.add(grado);
 
 
@@ -75,16 +80,21 @@ public class AggiornaBudopassViewModel extends AbstractViewModel implements Aggi
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
 		Argomento username = new Argomento("user", user);
 		args.add(username);
-		Argomento categoria = new Argomento("categoria", c.getCategoria());
-		args.add(categoria);
-		Argomento disciplina = new Argomento("disciplina", c.getDisciplina());
-		args.add(disciplina);
-		Argomento nome = new Argomento("nome", c.getNome());
-		args.add(nome);
-		Argomento d = new Argomento("data", c.getData().toString());
-		args.add(d);
-		Argomento pp = new Argomento("posizione", p.toString());
-		args.add(pp);
+//		Argomento categoria = new Argomento("categoria", c.getCategoria());
+//		args.add(categoria);
+//		Argomento disciplina = new Argomento("disciplina", c.getDisciplina());
+//		args.add(disciplina);
+//		Argomento nome = new Argomento("nome", c.getNome());
+//		args.add(nome);
+//		Argomento d = new Argomento("data", c.getData().toString());
+//		args.add(d);
+//		Argomento pp = new Argomento("posizione", p.toString());
+//		args.add(pp);
+		Gson g = new Gson();
+		Argomento competizione = new Argomento("competizione", g.toJson(c));
+		args.add(competizione);
+		Argomento posizione = new Argomento("posizione", g.toJson(p));
+		args.add(posizione);
 		this.request(new Request(Comando.AGGIORNA_BUDOPASS_COMPETIZIONE, args));
 		
 	}

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import sudojo.client.model.gestioneAffiliato.Affiliato;
 import sudojo.client.model.gestioneAffiliato.Credenziali;
 import sudojo.client.model.gestioneAffiliato.Persona;
@@ -46,9 +48,11 @@ public class CreaAffiliatoViewModel extends AbstractViewModel implements CreaAff
 	
 	
 	private void crea(Affiliato affiliato) throws IOException {
-		Util util = new Util();
-		List<Argomento> args = util.makeArgsFromAff(affiliato);
-		
+		Gson g = new Gson();
+//		Util util = new Util();
+//		List<Argomento> args = util.makeArgsFromAff(affiliato);
+		ArrayList<Argomento> args = new ArrayList<Argomento>();
+		args.add(new Argomento("affiliato", g.toJson(affiliato)));
 		//List<Argomento> args = this.makeArgsFromAff(affiliato);
 		this.request(new Request(Comando.CREA_AFFILIATO, args));
 		

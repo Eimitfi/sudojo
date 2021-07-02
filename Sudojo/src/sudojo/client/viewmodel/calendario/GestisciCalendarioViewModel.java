@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.google.gson.Gson;
+
 import sudojo.client.model.gestioneCalendario.Evento;
 import sudojo.client.model.net.Argomento;
 import sudojo.client.model.net.Comando;
@@ -53,7 +55,10 @@ public class GestisciCalendarioViewModel extends AbstractViewModel implements Ge
 	}
 	
 	private void esegui(Evento evento, Comando c) throws IOException {
-		ArrayList<Argomento> args = this.getArgsFromEvent(evento);
+		//ArrayList<Argomento> args = this.getArgsFromEvent(evento);
+		Gson g = new Gson();
+		ArrayList<Argomento> args = new ArrayList<Argomento>();
+		args.add(new Argomento("evento", g.toJson(evento)));
 		this.request(new Request(c, args));
 		
 	}

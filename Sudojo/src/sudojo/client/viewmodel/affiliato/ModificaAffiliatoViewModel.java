@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import sudojo.client.model.gestioneAffiliato.Affiliato;
 import sudojo.client.model.gestioneAffiliato.PersonaEsterna;
 import sudojo.client.model.net.Argomento;
@@ -40,9 +42,11 @@ public class ModificaAffiliatoViewModel extends AbstractViewModel implements Mod
 	}
 	
 	private void modifica(Affiliato affiliato) throws IOException {
-		Util util = new Util();
-		List<Argomento> args = util.makeArgsFromAff(affiliato);
-		
+//		Util util = new Util();
+//		List<Argomento> args = util.makeArgsFromAff(affiliato);
+		Gson g = new Gson();
+		ArrayList<Argomento> args = new ArrayList<Argomento>();
+		args.add(new Argomento("affiliato", g.toJson(affiliato)));
 		//List<Argomento> args = this.makeArgsFromAff(affiliato);
 		this.request(new Request(Comando.MODIFICA_AFFILIATO, args));
 	}

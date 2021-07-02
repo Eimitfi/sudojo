@@ -40,7 +40,7 @@ public class CancellaAffiliatoViewModel extends AbstractViewModel implements Can
 	
 	@Override
 	public void cancellaAffiliato(Affiliato affiliato) throws IOException {
-		Argomento argomento = new Argomento("affiliato", affiliato.getCF());
+		Argomento argomento = new Argomento("affiliato", affiliato.getCredenziali().getUsername());
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
 		RequestInterface richiesta = new Request(Comando.CANCELLA_AFFILIATO, args);
 		this.request(richiesta);
