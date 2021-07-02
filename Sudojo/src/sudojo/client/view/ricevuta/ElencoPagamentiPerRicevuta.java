@@ -12,6 +12,7 @@ public class ElencoPagamentiPerRicevuta extends AbstractView{
 	@Override
 	public void onChange(Subject obj) {
 		// TODO Auto-generated method stub	
+		
 	}
 
 	@Override
