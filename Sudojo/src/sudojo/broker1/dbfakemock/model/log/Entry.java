@@ -1,6 +1,6 @@
 package sudojo.broker1.dbfakemock.model.log;
 
-import java.sql.Time;
+import java.sql.Time; 
 import java.util.Date;
 
 public class Entry {
