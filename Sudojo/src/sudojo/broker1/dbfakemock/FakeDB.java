@@ -189,7 +189,7 @@ public class FakeDB implements InterfaceFakeDB{
 		ArrayList<sudojo.broker1.dbfakemock.model.elenchi.Affiliato> af = new ArrayList<sudojo.broker1.dbfakemock.model.elenchi.Affiliato>();
 		for(Affiliato a : this.affiliati) {
 		
-				affiliato = new sudojo.broker1.dbfakemock.model.elenchi.Allievo(a.getCredenziali().getUsername(), a.getNome(), a.getCognome());
+				affiliato = new sudojo.broker1.dbfakemock.model.elenchi.Affiliato(a.getCredenziali().getUsername(), a.getNome(), a.getCognome());
 				af.add(affiliato);
 			
 		}
@@ -221,8 +221,18 @@ public class FakeDB implements InterfaceFakeDB{
 
 	@Override
 	public ElencoIscritti getIscritti() {
-		// TODO Auto-generated method stub
-		return null;
+		ElencoIscritti result;
+		sudojo.broker1.dbfakemock.model.elenchi.Iscritto iscritto;
+		ArrayList<sudojo.broker1.dbfakemock.model.elenchi.Iscritto> i = new ArrayList<sudojo.broker1.dbfakemock.model.elenchi.Iscritto>();
+		for(Affiliato a : this.affiliati) {
+			if(a.getCarica().equals(Carica.ALLIEVO) || a.getCarica().equals(Carica.MAESTRO)) {
+				iscritto = new sudojo.broker1.dbfakemock.model.elenchi.Iscritto(a.getCredenziali().getUsername(), a.getNome(), a.getCognome());
+				i.add(iscritto);
+			}
+			
+		}
+		result = new ElencoIscritti(i);
+		return result;
 	}
 
 	@Override
@@ -233,43 +243,55 @@ public class FakeDB implements InterfaceFakeDB{
 
 	@Override
 	public List<Avviso> getAvvisi() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.allAvvisi;
 	}
 
 	@Override
 	public boolean creaDoc(Documento documento) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.allDoc.add(documento);
 	}
 
 	@Override
 	public Budopass getBudo(String username) {
-		// TODO Auto-generated method stub
+		for(Budopass budo : this.allBudos) {
+			if(budo.getIscritto().equals(username))
+				return budo;
+		}
 		return null;
 	}
 
 	@Override
 	public List<Presenza> getPresenze() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean aggiornaBudopass(String iscritto, Seminario s) {
-		// TODO Auto-generated method stub
+		for(Budopass budo : this.allBudos) {
+			if(budo.getIscritto().equals(iscritto)) {
+				return budo.addSeminario(s);
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public boolean aggiornaBudopass(String iscritto, Grado g) {
-		// TODO Auto-generated method stub
+		for(Budopass budo : this.allBudos) {
+			if(budo.getIscritto().equals(iscritto)) {
+				return budo.addGrado(g);
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public boolean aggiornaBudopass(String iscritto, Competizione c, Posizione p) {
-		// TODO Auto-generated method stub
+		for(Budopass budo : this.allBudos) {
+			if(budo.getIscritto().equals(iscritto)) {
+				return budo.addPartecipa(c, p);
+			}
+		}
 		return false;
 	}
 

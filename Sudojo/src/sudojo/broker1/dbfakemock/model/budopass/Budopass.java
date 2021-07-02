@@ -1,5 +1,6 @@
 package sudojo.broker1.dbfakemock.model.budopass;
 
+import java.util.Date;
 import java.util.List;
 
 public class Budopass {
@@ -15,6 +16,18 @@ public class Budopass {
 		this.gradiOttenuti = gradiOttenuti;
 		this.seminariSeguiti = seminariSeguiti;
 		this.iscritto = iscritto;
+	}
+	
+	public boolean addPartecipa(Competizione c, Posizione p) {
+		return this.competizioniPartecipate.add(new Partecipa(c, p));
+	}
+	
+	public boolean addSeminario(Seminario s) {
+		return this.seminariSeguiti.add(s);
+	}
+	
+	public boolean addGrado(Grado g) {
+		return this.gradiOttenuti.add(new StoricoGrado(g, new Date()));
 	}
 	
 	public String getIscritto() {
