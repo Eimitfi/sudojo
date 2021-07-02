@@ -1,4 +1,4 @@
-package sudojo.client.model.pagamento;
+package sudojo.broker1.dbfakemock.model.pagamento;
 
 import java.time.Period;
 import java.util.Date;

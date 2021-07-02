@@ -1,4 +1,4 @@
-package sudojo.client.model.elenchi;
+package sudojo.broker1.dbfakemock.model.elenchi;
 
 public class Affiliato {
 	private String user;

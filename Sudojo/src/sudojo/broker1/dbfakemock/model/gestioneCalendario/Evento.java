@@ -1,4 +1,4 @@
-package sudojo.client.model.gestioneCalendario;
+package sudojo.broker1.dbfakemock.model.gestioneCalendario;
 
 import java.sql.Time;
 import java.util.Date;

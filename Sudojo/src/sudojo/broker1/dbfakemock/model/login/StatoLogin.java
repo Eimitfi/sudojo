@@ -1,4 +1,4 @@
-package sudojo.client.model.login;
+package sudojo.broker1.dbfakemock.model.login;
 
 public enum StatoLogin {
 	ACCETTATO,

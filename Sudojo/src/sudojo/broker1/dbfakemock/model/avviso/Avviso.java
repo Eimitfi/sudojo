@@ -1,4 +1,4 @@
-package sudojo.client.model.avviso;
+package sudojo.broker1.dbfakemock.model.avviso;
 
 import java.util.List;
 

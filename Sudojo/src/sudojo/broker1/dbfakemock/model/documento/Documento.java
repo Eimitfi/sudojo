@@ -1,4 +1,4 @@
-package sudojo.client.model.documento;
+package sudojo.broker1.dbfakemock.model.documento;
 
 import java.util.Date;
 

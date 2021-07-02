@@ -1,4 +1,4 @@
-package sudojo.client.model.budopass;
+package sudojo.broker1.dbfakemock.model.budopass;
 
 public class SchedaValutazione {
 	private int valutazioneKihon;

@@ -1,4 +1,4 @@
-package sudojo.client.model.gestioneAffiliato;
+package sudojo.broker1.dbfakemock.model.gestioneAffiliato;
 
 import java.sql.Time;
 import java.time.DayOfWeek;
