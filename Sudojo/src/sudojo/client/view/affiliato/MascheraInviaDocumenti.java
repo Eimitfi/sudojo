@@ -10,6 +10,7 @@ public class MascheraInviaDocumenti extends AbstractView{
 	@Override
 	public void onChange(Subject obj) {
 		// TODO Auto-generated method stub	
+		//obj.getResponse() x ottenere la HTTPResponse e manipolarla opportunamente
 	}
 
 	@Override

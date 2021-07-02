@@ -22,7 +22,7 @@ public abstract class AbstractViewModel implements Subject{
 	public HTTPSClientInterface getClient() {
 		return client;
 	}
-	protected void setClient(HTTPSClientInterface client) {
+	public void setClient(HTTPSClientInterface client) {
 		this.client = client;
 	}
 	protected void request(RequestInterface r) throws IOException {
