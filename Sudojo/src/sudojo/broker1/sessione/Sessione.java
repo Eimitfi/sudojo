@@ -12,9 +12,9 @@ public class Sessione implements ISessione{
 		
 	}
 	
-	public Persona getPersona() {
-		
-	}
+//	public Persona getPersona() {
+//		
+//	}
 	
 	public Date getDataInizio() {
 		return this.dataInizio;

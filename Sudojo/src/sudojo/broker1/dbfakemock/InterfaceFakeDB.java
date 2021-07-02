@@ -18,6 +18,7 @@ import sudojo.broker1.dbfakemock.model.gestioneAffiliato.Credenziali;
 import sudojo.broker1.dbfakemock.model.gestioneAffiliato.Presenza;
 import sudojo.broker1.dbfakemock.model.gestioneCalendario.Evento;
 import sudojo.broker1.dbfakemock.model.log.Log;
+import sudojo.broker1.dbfakemock.model.login.StatoLogin;
 import sudojo.broker1.dbfakemock.model.pagamento.Pagamento;
 import sudojo.broker1.dbfakemock.model.pagamento.Ricevuta;
 
@@ -38,7 +39,7 @@ public interface InterfaceFakeDB {
 	public boolean modificaAffiliato(Affiliato a);
 	public Credenziali rigeneraPassword(String user);
 	public ElencoAffiliati getAffiliati();
-	public boolean login(String nomeUtente, String password);
+	public StatoLogin login(String nomeUtente, String password);
 	public boolean cambiaPassword(String nomeUtente, String nuovaPassword);
 	public ElencoIscritti getIscritti();
 	public boolean creaScheda(SchedaValutazione sv);

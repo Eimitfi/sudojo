@@ -6,6 +6,6 @@ public interface ISessione {
 	public Ruolo getRuolo();
 	public Date getDataScadenza();
 	public Date getDataInizio();
-	public Persona getPersona();
+	//public Persona getPersona();
 	//MA REGA CHI SE LA INCULA LA SESSIONE LOL
 }
