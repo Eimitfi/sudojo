@@ -6,14 +6,26 @@ public class Budopass {
 	private List<Partecipa> competizioniPartecipate;
 	private List<StoricoGrado> gradiOttenuti;
 	private List<Seminario> seminariSeguiti;
+	private String iscritto;
 	
 	public Budopass(List<Partecipa> competizioniPartecipate, List<StoricoGrado> gradiOttenuti,
-			List<Seminario> seminariSeguiti) {
+			List<Seminario> seminariSeguiti, String iscritto) {
 		super();
 		this.competizioniPartecipate = competizioniPartecipate;
 		this.gradiOttenuti = gradiOttenuti;
 		this.seminariSeguiti = seminariSeguiti;
+		this.iscritto = iscritto;
 	}
+	
+	public String getIscritto() {
+		return this.iscritto;
+	}
+	
+	public void setIscritto(String iscritto) {
+		this.iscritto = iscritto;
+		
+	}
+	
 	public List<Partecipa> getCompetizioniPartecipate() {
 		return competizioniPartecipate;
 	}
