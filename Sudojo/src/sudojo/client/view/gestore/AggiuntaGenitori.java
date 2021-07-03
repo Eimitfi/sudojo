@@ -2,6 +2,7 @@ package sudojo.client.view.gestore;
 
 import sudojo.client.view.AbstractView;
 import sudojo.client.viewmodel.Subject;
+import sudojo.client.viewmodel.affiliato.CreaAffiliatoViewModelInterface;
 
 public class AggiuntaGenitori extends AbstractView{
 	//Dubbio su questa classe, perche l'aggiunta/modifica dei genitori viene fatta attraverso CreaAffiliatoViewModelInterface e
@@ -9,6 +10,8 @@ public class AggiuntaGenitori extends AbstractView{
 	//nemmeno come farlo in grafica perche appunto dovrebbe già essere parte di aggiunta/modifica affiliato ed essendo una classe
 	//della view non dovrei implementare logica, a regola. Ditemi voi
 	//[daniel]: secondo me su entrambe
+	private CreaAffiliatoViewModelInterface viewmodel;
+	
 	@Override
 	public void onChange(Subject obj) {
 		// TODO Auto-generated method stub	
