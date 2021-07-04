@@ -8,4 +8,11 @@ public class Log {
 	public Log(List<Entry> entries) {
 		this.entries = entries;
 	}
+	
+	public boolean addEntry(Entry e) {
+		return this.entries.add(e);
+	}
+	public List<Entry> getEntries() {
+		return entries;
+	}
 }

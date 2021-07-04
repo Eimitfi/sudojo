@@ -83,14 +83,25 @@ public class FakeDB implements InterfaceFakeDB {
 		allBudos.add(new Budopass(p, gradi, seminari, "michele.dragos"));
 
 	}
+	
+	public void addEntryLog(Entry e) {
+		this.log.addEntry(e);
+	}
+	
+	public void addEntryLog(String msg) {
+		Entry e = new Entry(new Time(0, 0, 0), new Date(), msg);
+		this.addEntryLog(e);
+	}
 
 	@Override
 	public Log getLog() {
+		this.addEntryLog("Richiesta visualizzazione log");
 		return this.log;
 	}
 
 	@Override
 	public ElencoAllievi getAllievi() {
+		this.addEntryLog("Richiesta Elenco Allievi");
 		ElencoAllievi result;
 		sudojo.broker1.dbfakemock.model.elenchi.Allievo allievo = new sudojo.broker1.dbfakemock.model.elenchi.Allievo(
 				"ciao", "ciao", "ciao");
@@ -108,11 +119,13 @@ public class FakeDB implements InterfaceFakeDB {
 
 	@Override
 	public List<Pagamento> getAllPagamenti() {
+		this.addEntryLog("Richiesta getAllPagamenti");
 		return this.allPagamenti;
 	}
 
 	@Override
 	public List<Pagamento> getPagamentiByIscritto(String username) {
+		this.addEntryLog("Richiesta getPagamentiByIscritto");
 		ArrayList<Pagamento> result = new ArrayList<Pagamento>();
 		for (Pagamento p : this.allPagamenti) {
 			if (p.getUserIscritto().equals(username))
@@ -123,11 +136,13 @@ public class FakeDB implements InterfaceFakeDB {
 
 	@Override
 	public List<Evento> getEventi() {
+		this.addEntryLog("Richiesta visualizzazione calendario");
 		return this.calendario;
 	}
 
 	@Override
 	public boolean creaEvento(Evento e) {
+		this.addEntryLog("Richiesta aggiunta evento. Titolo: "+e.getTitolo()+" luogo: "+e.getLuogo()+" ora: "+e.getOra().toString()+" data: "+e.getData().toString());
 		return this.calendario.add(e);
 	}
 
@@ -139,33 +154,43 @@ public class FakeDB implements InterfaceFakeDB {
 
 	@Override
 	public boolean eliminaEvento(Evento e) {
+		this.addEntryLog("Richiesta elimina evento. Titolo: "+e.getTitolo()+" luogo: "+e.getLuogo()+" ora: "+e.getOra().toString()+" data: "+e.getData().toString());
+
 		for (Evento evento : this.calendario) {
 			if (evento.getData().equals(e.getData()) && evento.getTitolo().equals(e.getTitolo())
 					&& evento.getLuogo().equals(e.getLuogo()) && evento.getOra().equals(e.getOra())) {
 				calendario.remove(calendario.indexOf(evento));
+				this.addEntryLog(" EVENTO ELIMINATO\n");
 				return true;
+				
 			}
 		}
+		this.addEntryLog(" EVENTO NON ELIMINATO\n");
 		return false;
 	}
 
 	@Override
 	public boolean creaAvviso(Avviso a) {
+		this.addEntryLog("CreaAvviso: "+a.getOggetto()+" "+a.getDescrizione());
 		return this.allAvvisi.add(a);
 	}
 
 	@Override
 	public List<Documento> getDoc() {
+		this.addEntryLog("Richiesta getDoc");
 		return this.allDoc;
 	}
 
 	@Override
 	public boolean creaAffiliato(Affiliato a) {
+		this.addEntryLog("Richiesta creaAffiliato. Nome: "+a.getNome()+" cognome: "+a.getCognome()+ " email: "+a.getEmail()+" CF: "+a.getCF()+" residenza: "+a.getResidenza());
 		return this.affiliati.add(a);
 	}
 
 	@Override
 	public boolean cancellaAffiliato(String user) {
+		this.addEntryLog("Richiesta cancellaAffiliato: "+user );
+
 		for (Affiliato a : this.affiliati) {
 			if (a.getCredenziali().getUsername().equals(user)) {
 				this.affiliati.remove(this.affiliati.indexOf(a));
@@ -177,6 +202,8 @@ public class FakeDB implements InterfaceFakeDB {
 
 	@Override
 	public boolean modificaAffiliato(Affiliato a) {
+		this.addEntryLog("Richiesta creaAffiliato. Nome: "+a.getNome()+" cognome: "+a.getCognome()+ " email: "+a.getEmail()+" CF: "+a.getCF()+" residenza: "+a.getResidenza());
+
 		boolean esito = this.cancellaAffiliato(a.getCredenziali().getUsername());
 		if (esito) {
 			return this.creaAffiliato(a);
@@ -187,6 +214,8 @@ public class FakeDB implements InterfaceFakeDB {
 
 	@Override
 	public Credenziali rigeneraPassword(String user) {
+		this.addEntryLog("Richiesta RigeneraPassword: "+user );
+
 		for (Affiliato affiliato : this.affiliati) {
 			if (affiliato.getCredenziali().getUsername().equals(user)) {
 				affiliato.getCredenziali().setPassword("passwordTemporanea");
@@ -201,6 +230,8 @@ public class FakeDB implements InterfaceFakeDB {
 
 	@Override
 	public ElencoAffiliati getAffiliati() {
+		this.addEntryLog("Richiesta getAffiliati");
+
 		ElencoAffiliati result;
 		sudojo.broker1.dbfakemock.model.elenchi.Affiliato affiliato;
 		ArrayList<sudojo.broker1.dbfakemock.model.elenchi.Affiliato> af = new ArrayList<sudojo.broker1.dbfakemock.model.elenchi.Affiliato>();
@@ -217,19 +248,27 @@ public class FakeDB implements InterfaceFakeDB {
 
 	@Override
 	public StatoLogin login(String nomeUtente, String password) {
+		this.addEntryLog("Login. Utente: "+nomeUtente);
+
 		for (Affiliato affiliato : this.affiliati) {
 			if (affiliato.getCredenziali().getPassword().equals(password)
 					&& affiliato.getCredenziali().getUsername().equals(nomeUtente)) {
 				if (affiliato.getCredenziali().isTmp())
 					return StatoLogin.TMP;
+				this.addEntryLog(" OK\n");
+
 				return StatoLogin.ACCETTATO;
 			}
 		}
+		this.addEntryLog(" RIFIUTATO\n");
+
 		return StatoLogin.RIFIUTATO;
 	}
 
 	@Override
 	public boolean cambiaPassword(String nomeUtente, String nuovaPassword) {
+		this.addEntryLog("Richiesta cambiaPassword: "+nomeUtente);
+
 		for (Affiliato affiliato : this.affiliati) {
 			if (affiliato.getCredenziali().getUsername().equals(nomeUtente)) {
 				affiliato.getCredenziali().setPassword(nuovaPassword);
@@ -244,6 +283,8 @@ public class FakeDB implements InterfaceFakeDB {
 
 	@Override
 	public ElencoIscritti getIscritti() {
+		this.addEntryLog("Richiesta getIscritti");
+
 		ElencoIscritti result;
 		sudojo.broker1.dbfakemock.model.elenchi.Iscritto iscritto;
 		ArrayList<sudojo.broker1.dbfakemock.model.elenchi.Iscritto> i = new ArrayList<sudojo.broker1.dbfakemock.model.elenchi.Iscritto>();
@@ -261,22 +302,30 @@ public class FakeDB implements InterfaceFakeDB {
 
 	@Override
 	public boolean creaScheda(SchedaValutazione sv) {
+		this.addEntryLog("Richiesta creaScheda");
+
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public List<Avviso> getAvvisi() {
+		this.addEntryLog("Richiesta getAvvisi");
+
 		return this.allAvvisi;
 	}
 
 	@Override
 	public boolean creaDoc(Documento documento) {
+		this.addEntryLog("Richiesta creaDoc. Cogmome mittente:"+documento.getCognomeMittente()+" nome mittente: "+documento.getNomeMittente()+" oggetto: "+documento.getOggetto()+" user mittente: "+documento.getUserMittente());
+
 		return this.allDoc.add(documento);
 	}
 
 	@Override
 	public Budopass getBudo(String username) {
+		this.addEntryLog("Richiesta getBudo: "+username);
+
 		for (Budopass budo : this.allBudos) {
 			if (budo.getIscritto().equals(username))
 				return budo;
@@ -286,11 +335,15 @@ public class FakeDB implements InterfaceFakeDB {
 
 	@Override
 	public List<Presenza> getPresenze() {
+		this.addEntryLog("Richiesta getPresenze");
+
 		return null;
 	}
 
 	@Override
 	public boolean aggiornaBudopass(String iscritto, Seminario s) {
+		this.addEntryLog("Aggiunta al budopass di "+iscritto+" del seminario tenuto da "+s.getTenutario()+" a "+s.getLuogo());
+
 		for (Budopass budo : this.allBudos) {
 			if (budo.getIscritto().equals(iscritto)) {
 				return budo.addSeminario(s);
@@ -301,6 +354,8 @@ public class FakeDB implements InterfaceFakeDB {
 
 	@Override
 	public boolean aggiornaBudopass(String iscritto, Grado g) {
+		this.addEntryLog("Aggiunta al budopass di "+iscritto+" del grado "+g.toString());
+
 		for (Budopass budo : this.allBudos) {
 			if (budo.getIscritto().equals(iscritto)) {
 				return budo.addGrado(g);
@@ -311,6 +366,8 @@ public class FakeDB implements InterfaceFakeDB {
 
 	@Override
 	public boolean aggiornaBudopass(String iscritto, Competizione c, Posizione p) {
+		this.addEntryLog("Aggiunta al budopass di "+iscritto+" della competizione "+c.getCategoria()+" "+c.getDisciplina()+" posizione "+p.toString());
+
 		for (Budopass budo : this.allBudos) {
 			if (budo.getIscritto().equals(iscritto)) {
 				return budo.addPartecipa(c, p);
