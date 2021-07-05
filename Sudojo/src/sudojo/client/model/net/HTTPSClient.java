@@ -10,7 +10,6 @@ import java.net.URL;
 
 
 public class HTTPSClient implements HTTPSClientInterface {
-	static java.net.CookieManager ms = new java.net.CookieManager();
 	private URL brokerURL;
 	
 	
@@ -26,7 +25,6 @@ public class HTTPSClient implements HTTPSClientInterface {
 	public HTTPSClient(String brokerURL) throws MalformedURLException {
 		super();
 		this.brokerURL = new URL(brokerURL);
-		java.net.CookieHandler.setDefault(ms);
 	}
 
 

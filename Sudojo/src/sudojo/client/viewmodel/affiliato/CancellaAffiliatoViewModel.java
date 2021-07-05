@@ -42,6 +42,7 @@ public class CancellaAffiliatoViewModel extends AbstractViewModel implements Can
 	public void cancellaAffiliato(Affiliato affiliato) throws IOException {
 		Argomento argomento = new Argomento("affiliato", affiliato.getCredenziali().getUsername());
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
+		args.add(argomento);
 		RequestInterface richiesta = new Request(Comando.CANCELLA_AFFILIATO, args);
 		this.request(richiesta);
 	 

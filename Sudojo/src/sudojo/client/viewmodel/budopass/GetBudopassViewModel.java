@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import sudojo.client.model.budopass.Budopass;
+import sudojo.client.model.net.Argomento;
 import sudojo.client.model.net.Comando;
 import sudojo.client.model.net.Request;
 import sudojo.client.viewmodel.AbstractViewModel;
@@ -38,8 +39,11 @@ public class GetBudopassViewModel extends AbstractViewModel implements GetBudopa
 
 	@Override
 	public void getBudopass(String user) throws IOException {
-		// TODO Auto-generated method stub
-		this.request(new Request(Comando.GET_BUDO, null));
+		//zi mi serve anche lo user per prendere un budopass
+		ArrayList<Argomento> args = new ArrayList<Argomento>();
+		Argomento username = new Argomento("user", user);
+		args.add(username);
+		this.request(new Request(Comando.GET_BUDO, args));
 		
 	}
 	

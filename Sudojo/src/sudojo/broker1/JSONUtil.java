@@ -11,14 +11,18 @@ public class JSONUtil implements JSONDeserializable, JSONSerializable{
 		this.g = new Gson();
 	}
 
-	@Override
-	public String jsonSerialize(RequestInterface richiesta) {
-		return g.toJson(richiesta);
-	}
+	
 
 	@Override
 	public RequestInterface jsonDeserialize(String json) {
 		return g.fromJson(json, Request.class);
+	}
+
+
+
+	@Override
+	public String jsonSerialize(ResponseInterface res) {
+		return g.toJson(res);		
 	}
 
 
