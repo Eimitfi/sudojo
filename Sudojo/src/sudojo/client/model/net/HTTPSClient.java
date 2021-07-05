@@ -4,14 +4,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import javax.net.ssl.HttpsURLConnection;
 
 public class HTTPSClient implements HTTPSClientInterface {
-	
+	static java.net.CookieManager ms = new java.net.CookieManager();
 	private URL brokerURL;
+	
 	
 	public URL getBrokerURL() {
 		return brokerURL;
@@ -25,6 +26,7 @@ public class HTTPSClient implements HTTPSClientInterface {
 	public HTTPSClient(String brokerURL) throws MalformedURLException {
 		super();
 		this.brokerURL = new URL(brokerURL);
+		java.net.CookieHandler.setDefault(ms);
 	}
 
 
@@ -35,7 +37,7 @@ public class HTTPSClient implements HTTPSClientInterface {
 		JSONUtil util = new JSONUtil();
 		String req = util.jsonSerialize(richiesta);
 		
-		HttpsURLConnection con = (HttpsURLConnection) this.brokerURL.openConnection();
+		HttpURLConnection con = (HttpURLConnection) this.brokerURL.openConnection();
 		con.setRequestMethod("POST");
 		con.setRequestProperty("Content-Type", "application/json; utf-8");
 		con.setRequestProperty("Accept", "application/json");
