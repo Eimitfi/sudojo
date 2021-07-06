@@ -108,7 +108,7 @@ public class ClientModelTest {
 	//no avvisi, chiedi a Dragos why
 	public static void main(String[] args) throws IOException {
 		//situa iniziale: 1 allievo con genitore + budopass, 1 maestro, 1 direttore, 1 log  
-		sender = new HTTPSClient("http://localhost:8080/Sudojo");
+		sender = new HTTPSClient("http://localhost:8080/TecWeb_TemplateEmpty/RequestHandler");
 		checkSituaIniziale();
 	}
 
