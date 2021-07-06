@@ -42,7 +42,7 @@ public class HTTPSClient implements HTTPSClientInterface {
 		con.setDoOutput(true);
 		
 		req = "richiesta=" + req;
-		
+		System.out.println("\n httpsclient richiesta: "+req);
 		try(OutputStream os = con.getOutputStream()) {
 		    byte[] input = req.getBytes("utf-8");
 		    os.write(input, 0, input.length);			
