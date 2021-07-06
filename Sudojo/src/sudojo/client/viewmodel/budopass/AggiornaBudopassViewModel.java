@@ -56,6 +56,7 @@ public class AggiornaBudopassViewModel extends AbstractViewModel implements Aggi
 //		args.add(data);
 		Gson g = new Gson();
 		Argomento seminario = new Argomento("seminario", g.toJson(s));
+		args.add(seminario);
 		this.request(new Request(Comando.AGGIORNA_BUDOPASS_SEMINARIO, args));
 	}
 

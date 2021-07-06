@@ -33,8 +33,8 @@ public class Response implements ResponseInterface{
 	public Response(Comando comando) {
 		super();
 		this.comando = comando;
-		this.risultato = null;
-		this.exception = null;
+		this.risultato = "";
+		this.exception = "";
 		this.stato = Stato.OK;
 		
 	}

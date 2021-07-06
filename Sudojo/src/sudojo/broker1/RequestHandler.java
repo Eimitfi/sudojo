@@ -1,6 +1,5 @@
 package sudojo.broker1;
 
-import java.awt.List;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -21,14 +20,17 @@ import sudojo.broker1.dbfakemock.model.budopass.Posizione;
 import sudojo.broker1.dbfakemock.model.budopass.SchedaValutazione;
 import sudojo.broker1.dbfakemock.model.budopass.Seminario;
 import sudojo.broker1.dbfakemock.model.documento.Documento;
-import sudojo.broker1.dbfakemock.model.elenchi.Affiliato;
 import sudojo.broker1.dbfakemock.model.gestioneCalendario.Evento;
 import sudojo.broker1.dbfakemock.model.login.StatoLogin;
 import sudojo.broker1.dbfakemock.model.pagamento.Pagamento;
 
 @SuppressWarnings("deprecation")
 public class RequestHandler extends HttpServlet implements SingleThreadModel,HTTPSBrokerInterface{
-	 private Gson g;
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Gson g;
 	private JSONUtil j;
 	private InterfaceFakeDB db;
 	
@@ -36,6 +38,10 @@ public class RequestHandler extends HttpServlet implements SingleThreadModel,HTT
 		this.db = new FakeDB();
 		this.g = new Gson();
 		this.j = new JSONUtil();
+	}
+	//debug only
+	public void doGet(HttpServletRequest req,HttpServletResponse res) throws IOException {
+		res.getWriter().write("prova");
 	}
 	
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException {
