@@ -1,6 +1,6 @@
 package sudojo;
 
-import java.io.IOException; 
+import java.io.IOException;  
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collection;

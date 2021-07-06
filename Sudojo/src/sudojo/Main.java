@@ -1,9 +1,11 @@
 package sudojo;
 
-import java.sql.Time;
+import java.sql.Time; 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.google.gson.Gson;
 
 import sudojo.broker1.dbfakemock.FakeDB;
 import sudojo.broker1.dbfakemock.model.elenchi.Affiliato;
@@ -15,6 +17,7 @@ import sudojo.broker1.dbfakemock.model.gestioneCalendario.Evento;
 public class Main {
 	
 	public static void main(String[] args) {
+		Gson g = new Gson();
 		FakeDB test = new FakeDB();
 		Evento evento = new Evento("ciao", "pordenone","ciaociao", new Date(), new Time(0, 0, 0));
 		test.creaEvento(evento);
