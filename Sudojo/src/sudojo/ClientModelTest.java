@@ -12,11 +12,14 @@ import com.google.gson.Gson;
 import sudojo.client.model.avviso.Avviso;
 import sudojo.client.model.budopass.Competizione;
 import sudojo.client.model.budopass.Grado;
+import sudojo.client.model.budopass.Partecipa;
 import sudojo.client.model.budopass.Posizione;
 import sudojo.client.model.budopass.SchedaValutazione;
 import sudojo.client.model.budopass.Seminario;
 import sudojo.client.model.documento.Documento;
 import sudojo.client.model.gestioneAffiliato.Affiliato;
+import sudojo.client.model.gestioneAffiliato.Carica;
+import sudojo.client.model.gestioneAffiliato.Credenziali;
 import sudojo.client.model.gestioneCalendario.Evento;
 import sudojo.client.model.net.Argomento;
 import sudojo.client.model.net.Comando;
@@ -28,51 +31,116 @@ import sudojo.client.model.net.ResponseInterface;
 import sudojo.client.model.pagamento.Pagamento;
 
 public class ClientModelTest {
-	private Gson g = new Gson();
 	private static HTTPSClientInterface sender;
+
+	
+	private static void checkAffiliatoRobe() throws IOException {
+		Affiliato tmp = new Affiliato("Miro", "rajero", "Cordenons", "numTel", "Austria generica", new Date(01,01,1980), "roba@mail", "CF generico", new Credenziali("daniele",false,"daniele"), Carica.ALLIEVO, null, null);
+		creaAffiliato(tmp);
+		getAffiliati();
+		
+		tmp = new Affiliato("MiroModificato", "rajero", "Cordenons", "numTel", "Austria generica", new Date(01,01,1980), "roba@mail", "CF generico", new Credenziali("danielemodificato",false,"daniele"), Carica.ALLIEVO, null, null);
+		modificaAffiliato(tmp);
+		getAffiliati();
+		
+		rigeneraPassword("danielemodificato");
+		cancellaAffiliato(tmp);
+		getAffiliati();
+		getLog();
+	}
+	
+	private static void checkSituaIniziale() throws IOException {
+		getLog();
+		
+		getAffiliati();//tutti e 3
+		
+		getAllievi();
+		
+		getBudopass("michele.dragos");
+	}
+	
+	private static void checkBudopassRobe() throws IOException {
+		aggiornaBudopass("michele.dragos", new Seminario(new Date(10,10,2010), "personax", "personax"));
+		aggiornaBudopass("michele.dragos",Grado.NERA_3_DAN);
+		aggiornaBudopass("michele.dragos",new Competizione("ViareggioKarateFest2019", new Date(10, 10, 2018),
+				"fuoriclasse", false, "karate difficile"),Posizione.SECONDO);
+		getBudopass("michele.dragos");
+		getLog();
+	}
+	
+	private static void checkCalendarioRobe() throws IOException{
+		Evento e = new Evento("ClickBait", "na roba, poi vedrai", new Date(10,10,2021), new Time(1000));
+		creaEvento(e);
+		getEventi();
+		cancellaEvento(e);
+		getLog();
+	}
+	
+	private static void checkLogin() throws IOException {
+		login("paolo","paolo");
+		getLog();
+	}
+	
+	private static void checkDocumentiRobe() throws IOException {
+		Documento d = new Documento("oggetto",new Date(10,10,2010),"paolo","nome: paolo","cognome che non ricordo", null);
+		creaDocumento(d);
+		getDocumenti();
+		getLog();
+	}
+	
+	private static void checkPagamenti() throws IOException{
+		getAllPagamenti();
+		getPagamentiByIscritto("michele.dragos");
+		getLog();
+	}
+	
+	/*private static void checkPresenze() throws IOException{
+		getPresenze();
+		getLog();
+	}*/
+	
+	private static void checkScheda() throws IOException {
+		creaSchedaValutazione(null);
+		getLog();
+	}
+	
+	
+	//no avvisi, chiedi a Dragos why
 	public static void main(String[] args) throws IOException {
-		ArrayList<Argomento> args1;
 		//situa iniziale: 1 allievo con genitore + budopass, 1 maestro, 1 direttore, 1 log  
 		sender = new HTTPSClient("http://localhost:8080/Sudojo");
-		//log check
-		System.out.println(sender.richiedi(new Request(Comando.LOG,null)).getRisultato());
-		//budo check
-		args1 = new ArrayList<Argomento>();
-		Argomento username = new Argomento("user", "michele.Dragos");
-		args1.add(username);
-		System.out.println(sender.richiedi(new Request(Comando.GET_BUDO, args1)));
-
+		checkSituaIniziale();
 	}
 
-	private void pRes(ResponseInterface r) {
+	private static void pRes(ResponseInterface r) {
 		System.out.println("--------------------------------------------------");
 		System.out.println(r.getStato().toString());
 		System.out.println(r.getRisultato());
 		System.out.println("--------------------------------------------------");
 	}
 	
-	private void cancellaAffiliato(Affiliato affiliato) throws IOException {
+	private static void cancellaAffiliato(Affiliato affiliato) throws IOException {
 		Argomento argomento = new Argomento("affiliato", affiliato.getCredenziali().getUsername());
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
 		args.add(argomento);
 		RequestInterface richiesta = new Request(Comando.CANCELLA_AFFILIATO, args);
 		pRes(sender.richiedi(richiesta));
 	}
-	private void creaAffiliato(Affiliato affiliato) throws IOException {
+	private static void creaAffiliato(Affiliato affiliato) throws IOException {
 		Gson g = new Gson();
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
 		args.add(new Argomento("affiliato", g.toJson(affiliato)));
 		pRes(sender.richiedi(new Request(Comando.CREA_AFFILIATO, args)));
 	}
 	
-	private void modificaAffiliato(Affiliato affiliato) throws IOException {
+	private static void modificaAffiliato(Affiliato affiliato) throws IOException {
 		Gson g = new Gson();
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
 		args.add(new Argomento("affiliato", g.toJson(affiliato)));
 		pRes(sender.richiedi(new Request(Comando.MODIFICA_AFFILIATO, args)));
 	}
 	
-	public void rigeneraPassword(String username) throws IOException {
+	private static void rigeneraPassword(String username) throws IOException {
 		Argomento argomento = new Argomento("username", username);
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
 		args.add(argomento);
@@ -80,7 +148,7 @@ public class ClientModelTest {
 	}
 	
 	
-	public void aggiornaBudopass(String user, Seminario s) throws IOException {
+	private static void aggiornaBudopass(String user, Seminario s) throws IOException {
 		// TODO Auto-generated method stub
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
 		Argomento username = new Argomento("user", user);
@@ -92,7 +160,7 @@ public class ClientModelTest {
 	}
 
 	
-	public void aggiornaBudopass(String user, Grado g) throws IOException {
+	private static void aggiornaBudopass(String user, Grado g) throws IOException {
 		// TODO Auto-generated method stub
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
 		Argomento username = new Argomento("user", user);
@@ -105,7 +173,7 @@ public class ClientModelTest {
 	}
 
 	
-	public void aggiornaBudopass(String user, Competizione c, Posizione p) throws IOException {
+	private static void aggiornaBudopass(String user, Competizione c, Posizione p) throws IOException {
 		// TODO Auto-generated method stub
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
 		Argomento username = new Argomento("user", user);
@@ -120,7 +188,7 @@ public class ClientModelTest {
 	}
 	
 	
-	public void getBudopass(String user) throws IOException {
+	private static void getBudopass(String user) throws IOException {
 		//zi mi serve anche lo user per prendere un budopass
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
 		Argomento username = new Argomento("user", user);
@@ -129,7 +197,7 @@ public class ClientModelTest {
 		
 	}
 	
-	private void eseguiEvento(Evento evento, Comando c) throws IOException {
+	private static void eseguiEvento(Evento evento, Comando c) throws IOException {
 		Gson g = new Gson();
 		ArrayList<Argomento> args = new ArrayList<Argomento>();
 		args.add(new Argomento("evento", g.toJson(evento)));
@@ -137,30 +205,30 @@ public class ClientModelTest {
 	}
 
 	
-	public void cancellaEvento(Evento evento) throws IOException {
+	private static void cancellaEvento(Evento evento) throws IOException {
 		// TODO Auto-generated method stub
-		this.eseguiEvento(evento, Comando.CANCELLA_EVENTO);
+		eseguiEvento(evento, Comando.CANCELLA_EVENTO);
 	}
 
 	
-	public void modificaEvento(Evento evento) throws IOException {
+	private static void modificaEvento(Evento evento) throws IOException {
 		// TODO Auto-generated method stub
-		this.eseguiEvento(evento, Comando.MODIFICA_EVENTO);
+		eseguiEvento(evento, Comando.MODIFICA_EVENTO);
 	}
 
 	
-	public void creaEvento(Evento evento) throws IOException {
+	private static void creaEvento(Evento evento) throws IOException {
 		// TODO Auto-generated method stub
-		this.eseguiEvento(evento, Comando.CREA_EVENTO);	
+		eseguiEvento(evento, Comando.CREA_EVENTO);	
 	}
 	
 	
-	public void getEventi() throws IOException {
+	private static void getEventi() throws IOException {
 		// TODO Auto-generated method stub
 		pRes(sender.richiedi(new Request(Comando.GET_EVENTI, null)));
 	}
 	
-	public void creaAvviso(Avviso avviso, Collection<String> users) throws IOException {
+	private static void creaAvviso(Avviso avviso, Collection<String> users) throws IOException {
 		// TODO Auto-generated method stub
 		Gson g = new Gson();
 		Argomento argomento = new Argomento("avviso", g.toJson(avviso));
@@ -171,7 +239,7 @@ public class ClientModelTest {
 		pRes(sender.richiedi(new Request(Comando.CREA_AVVISO, args)));
 	}
 	
-	public void creaDocumento(Documento doc) throws IOException {
+	private static void creaDocumento(Documento doc) throws IOException {
 		// TODO Auto-generated method stub
 		Gson g = new Gson();
 		Argomento argomento = new Argomento("documento", g.toJson(doc));
@@ -181,23 +249,23 @@ public class ClientModelTest {
 		
 	}
 	
-	public void getAvvisi() throws IOException {
+	private static void getAvvisi() throws IOException {
 		// TODO Auto-generated method stub
 		pRes(sender.richiedi(new Request(Comando.GET_AVVISI, null)));
 	}
 	
-	public void getDocumenti() throws IOException {
+	private static void getDocumenti() throws IOException {
 		// TODO Auto-generated method stub
 		pRes(sender.richiedi(new Request(Comando.GET_DOC, null)));	
 	}
 	
-	public void getLog() throws IOException {
+	private static void getLog() throws IOException {
 		// TODO Auto-generated method stub
 		pRes(sender.richiedi(new Request(Comando.LOG, null)));
 		
 	}
 	
-	public void login(String user, String pswd) throws IOException {
+	private static void login(String user, String pswd) throws IOException {
 		// TODO Auto-generated method stub
 		Argomento username = new Argomento("username", user);
 		Argomento password = new Argomento("password", pswd);
@@ -209,7 +277,7 @@ public class ClientModelTest {
 	}
 
 	
-	public void cambiaPassword(String user, String pswd) throws IOException {
+	private static void cambiaPassword(String user, String pswd) throws IOException {
 		// TODO Auto-generated method stub
 		Argomento username = new Argomento("username", user);
 		Argomento password = new Argomento("password", pswd);
@@ -219,31 +287,31 @@ public class ClientModelTest {
 		pRes(sender.richiedi(new Request(Comando.CAMBIA_PSWD, args)));
 	}
 	
-	public void getAffiliati() throws IOException {
+	private static void getAffiliati() throws IOException {
 		// TODO Auto-generated method stub
 		pRes(sender.richiedi(new Request(Comando.GET_AFFILIATI, null)));
 		
 	}
 	
-	public void getAllievi() throws IOException {
+	private static void getAllievi() throws IOException {
 		// TODO Auto-generated method stub
 		pRes(sender.richiedi(new Request(Comando.GET_ALLIEVI, null)));
 		
 	}
 	
-	public void getIscritti() throws IOException {
+	private static void getIscritti() throws IOException {
 		// TODO Auto-generated method stub
 		pRes(sender.richiedi(new Request(Comando.GET_ISCRITTI, null)));
 	}
 	
 	
-	public void getAllPagamenti() throws IOException {
+	private static void getAllPagamenti() throws IOException {
 		Request request = new Request(Comando.ALL_PAGAMENTI, null);
 		pRes(sender.richiedi(request));
 	}
 
 	
-	public void getPagamentiByIscritto(String iscritto) throws IOException {
+	private static void getPagamentiByIscritto(String iscritto) throws IOException {
 		ArrayList<Argomento> argomenti = new ArrayList<Argomento>();
 		Argomento arg = new Argomento("iscritto", iscritto);
 		argomenti.add(arg);
@@ -252,14 +320,14 @@ public class ClientModelTest {
 	}
 	
 	
-	public void getPresenze() throws IOException {
+	private static void getPresenze() throws IOException {
 		// TODO Auto-generated method stub
 		pRes(sender.richiedi(new Request(Comando.PRESENZE, null)));
 		
 	}
 	
 	
-	public void generaRicevute(List<Pagamento> pagamenti) throws IOException {
+	private static void generaRicevute(List<Pagamento> pagamenti) throws IOException {
 		// TODO Auto-generated method stub
 		Gson g = new Gson();
 		Argomento argomento = new Argomento("pagamenti", g.toJson(pagamenti));
@@ -269,7 +337,7 @@ public class ClientModelTest {
 	}
 	
 	
-	public void creaSchedaValutazione(SchedaValutazione scheda) throws IOException {
+	private static void creaSchedaValutazione(SchedaValutazione scheda) throws IOException {
 		Gson g = new Gson();
 		Argomento argomento = new Argomento("scheda", g.toJson(scheda));
 		ArrayList<Argomento> args = new ArrayList<Argomento>();

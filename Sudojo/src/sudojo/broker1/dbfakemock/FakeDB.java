@@ -1,6 +1,7 @@
 package sudojo.broker1.dbfakemock;
 
 import java.sql.Time;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,6 +44,8 @@ public class FakeDB implements InterfaceFakeDB {
 		allDoc = new ArrayList<Documento>();
 
 		allPagamenti = new ArrayList<Pagamento>();
+
+		allPagamenti.add(new Pagamento(new Date(10,10,2021), Period.ofDays(100), 0, "dummy", "dummy", "michele.dragos", "dummy", "dummy"));
 
 		allAvvisi = new ArrayList<Avviso>();
 
