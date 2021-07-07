@@ -111,6 +111,14 @@ public class ClientModelTest {
 		sender = new HTTPSClient("http://localhost:8080/TecWeb_TemplateEmpty/requestHandler");
 		
 		checkSituaIniziale();
+		checkAffiliatoRobe();
+		checkBudopassRobe();
+		checkDocumentiRobe();
+		checkLogin();
+		checkPagamenti();
+		checkScheda();
+	
+		
 	}
 
 	private static void pRes(ResponseInterface r) {

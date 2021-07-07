@@ -29,6 +29,11 @@ public class Response implements ResponseInterface{
 	public void setStato(Stato stato) {
 		this.stato = stato;
 	}
+	
+	public Response() {
+		this(null, "", "", null);
+	}
+	
 	public Response(Comando comando, String risultato, String exception, Stato stato) {
 		super();
 		this.comando = comando;
