@@ -7,4 +7,5 @@ module Sudojo {
 	opens sudojo.client.model.gestioneAffiliato;
 	opens sudojo.client.model.budopass;
 	opens sudojo.client.model.documento;
+	opens sudojo.client.model.gestioneCalendario;
 }
