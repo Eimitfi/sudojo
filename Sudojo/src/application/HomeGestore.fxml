@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+	prefWidth="800.0" style="-fx-background-color: black;"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="application.HomeGestoreController">
+	<children>
+		<Label layoutX="265.0" layoutY="33.0" text="Home Gestore"
+			textFill="WHITE">
+			<font>
+				<Font name="System Bold" size="40.0" />
+			</font>
+		</Label>
+		<Button fx:id="btn_log" layoutX="634.0" layoutY="288.0"
+			mnemonicParsing="false" onAction="#show_log"
+			style="-fx-background-color: ff4500;" text="Visualizza Log"
+			textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button fx:id="btn_ricevuta" layoutX="615.0" layoutY="127.0"
+			mnemonicParsing="false" onAction="#show_ricevuta"
+			style="-fx-background-color: ff4500;" text="Genera Ricevuta"
+			textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button fx:id="btn_documenti" layoutX="292.0" layoutY="288.0"
+			mnemonicParsing="false" onAction="#show_documenti"
+			style="-fx-background-color: ff4500;" text="Visualizza Documenti"
+			textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button fx:id="btn_avviso" layoutX="14.0" layoutY="288.0"
+			mnemonicParsing="false" onAction="#send_avviso"
+			style="-fx-background-color: ff4500;" text="Invia Avviso"
+			textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button fx:id="btn_calendario" layoutX="302.0" layoutY="127.0"
+			mnemonicParsing="false" onAction="#gestione_calendario"
+			style="-fx-background-color: ff4500;" text="Gestione Calendario"
+			textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button fx:id="btn_affiliato" layoutX="14.0" layoutY="127.0"
+			mnemonicParsing="false" onAction="#gestione_affiliato"
+			style="-fx-background-color: ff4500;" text="Gestione Affiliato"
+			textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button fx:id="btn_logout" layoutX="354.0" layoutY="520.0"
+			mnemonicParsing="false" onAction="#do_logout"
+			style="-fx-background-color: ff4500;" text="Logout" textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+	</children>
+</Pane>

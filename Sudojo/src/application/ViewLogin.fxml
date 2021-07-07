@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<Pane xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="application.ViewLoginController" prefHeight="600.0"
+	prefWidth="600.0" style="-fx-background-color: black;"
+	BorderPane.alignment="CENTER">
+	<children>
+		<ImageView fitHeight="177.0" fitWidth="200.0"
+			layoutX="200.0" layoutY="28.0">
+			<image>
+				<Image url="@../../../../Desktop/sudojo_logo.PNG" />
+			</image>
+		</ImageView>
+		<TextField fx:id="user_field" layoutX="175.0"
+			layoutY="270.0" prefHeight="30.0" prefWidth="250.0" />
+		<Label layoutX="175.0" layoutY="243.0" text="Username"
+			textFill="WHITE">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+		<Label layoutX="177.0" layoutY="319.0" text="Password"
+			textFill="WHITE">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+		<Button fx:id="login_button" layoutX="261.0" layoutY="406.0"
+			mnemonicParsing="false" onAction="#do_login"
+			style="-fx-background-color: #FF4500;" text="Login" textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<PasswordField fx:id="passwd_field" layoutX="175.0"
+			layoutY="346.0" prefHeight="30.0" prefWidth="250.0" />
+		<Label fx:id="err_msg" layoutX="142.0" layoutY="487.0"
+			opacity="0.0" text="Username o password errati" textFill="RED">
+			<font>
+				<Font name="System Bold" size="24.0" />
+			</font>
+		</Label>
+	</children>
+</Pane>

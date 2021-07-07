@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+	prefWidth="800.0" style="-fx-background-color: black;"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="application.HomeMaestroController">
+	<children>
+		<Label layoutX="266.0" layoutY="30.0" text="HomeMaestro"
+			textFill="WHITE">
+			<font>
+				<Font name="System Bold" size="40.0" />
+			</font>
+		</Label>
+		<Button fx:id="btn_budopass" layoutX="582.0" layoutY="131.0"
+			mnemonicParsing="false" onAction="#show_budopass"
+			style="-fx-background-color: FF4500;" text="Visualizza Budopass"
+			textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button fx:id="btn_ricevuta" layoutX="300.0" layoutY="131.0"
+			mnemonicParsing="false" onAction="#show_ricevuta"
+			style="-fx-background-color: FF4500;" text="Genera Ricevuta"
+			textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button fx:id="btn_calendar" layoutX="14.0" layoutY="131.0"
+			mnemonicParsing="false" onAction="#show_calendar"
+			style="-fx-background-color: FF4500;" text="Visualizza Calendario"
+			textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button fx:id="btn_avvisi" layoutX="14.0" layoutY="300.0"
+			mnemonicParsing="false" onAction="#show_avvisi"
+			style="-fx-background-color: FF4500;" text="Visualizza Avvisi"
+			textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button fx:id="btn_documenti" layoutX="614.0" layoutY="300.0"
+			mnemonicParsing="false" onAction="#send_documenti"
+			style="-fx-background-color: FF4500;" text="Invia Documenti"
+			textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button fx:id="btn_scheda" layoutX="261.0" layoutY="300.0"
+			mnemonicParsing="false" onAction="#compila_scheda"
+			style="-fx-background-color: FF4500;"
+			text="Compila Scheda Valutazione" textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button fx:id="btn_logout" layoutX="340.0" layoutY="505.0"
+			mnemonicParsing="false" onAction="#do_logout"
+			style="-fx-background-color: FF4500;" text="Logout" textFill="WHITE">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+	</children>
+</Pane>
