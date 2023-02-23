@@ -1,2 +1,2 @@
 # sudojo
-gestionale palestra di karate
+Analisi e progettazione di un gestionale palestra di karate
